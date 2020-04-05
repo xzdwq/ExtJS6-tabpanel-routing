@@ -1,0 +1,22 @@
+{
+  "result": [
+    {
+      "id": 1,
+      "code": "LSK.1",
+      "name": "ЛСК Объект 1"
+    },
+    {
+      "id": 2,
+      "code": "LSK.2",
+      "name": "ЛСК Объект 2"
+    },
+    {
+      "id": 3,
+      "code": "LSK.3",
+      "name": "ЛСК Объект 3"
+    }
+  ],
+  "total": 3,
+  "success": true,
+  "message": ""
+}

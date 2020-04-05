@@ -12,12 +12,8 @@ Ext.define('lsk.view.Viewport', {
       xtype: 'tabpanel',
       itemId: 'tab-panel',
       tabPosition: 'bottom',
-      defaults: { bodyPadding: 5, layout: 'fit' },
+      defaults: { bodyPadding: 2, layout: 'fit' },
       items: [
-        {
-          title: 'Empty-test',
-          itemId: 'empty'
-        },
         {
           title: 'Структура',
           itemId: 'structur'

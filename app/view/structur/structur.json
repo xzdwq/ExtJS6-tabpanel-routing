@@ -8,7 +8,22 @@
     {
       "id": 2,
       "code": "LSK.2",
-      "name": "ЛСК Объект 2"
+      "name": "ЛСК Объект 2",
+      "result": [
+        {
+          "name": "Work",
+          "result": [
+            {
+              "name": "Qwe",
+              "leaf": true
+            },
+            {
+              "name": "Asd",
+              "leaf": true
+            }
+          ]
+        }
+      ]
     },
     {
       "id": 3,

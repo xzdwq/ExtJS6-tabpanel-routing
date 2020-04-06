@@ -1,31 +1,10 @@
-Ext.define('lsk.view.structur.StructuJSONReader', {
-  extend: 'Ext.data.reader.Json',
-  alias : 'reader.StructuJSONReader',
-  buildExtractors : function() {
-    var me = this;
-    me.callParent(arguments);
-    me.getRoot = function(res) {
-      switch(res.code) {
-        case 'LSK.1':
-          return res['leaf'] = true,
-          console.log(res);
-        case 'LSK.2':
-          return res['leaf'] = true,
-          console.log(res);
-        case 'LSK.3':
-          return res['leaf'] = true,
-          console.log(res);
-      }
-        return res['result'];
-    };
-  }
-});
-
 Ext.define('lsk.view.structur.Structur', {
   extend: 'Ext.panel.Panel',
   alias: 'widget.structur',
   requires: [
-    'lsk.view.structur.StructurController'
+    'lsk.view.structur.StructurController',
+    'lsk.view.structur.plugins.StructuJSONReader',
+    'lsk.view.structur.plugins.TreeFilter'
   ],
   controller: 'structur',
   bodyPadding: 2,
@@ -34,6 +13,10 @@ Ext.define('lsk.view.structur.Structur', {
     {
       xtype: 'treepanel',
       itemId: 'treepanel',
+      plugins: [{
+        ptype: 'treefilter',
+        allowParentFolders: true
+      }],
       displayField: 'name',
       store: {
         type: 'tree',
@@ -48,6 +31,7 @@ Ext.define('lsk.view.structur.Structur', {
           api: { read: 'app/view/structur/structur.json' },
           reader: {
             type: 'StructuJSONReader',
+            //type: 'json',
             rootProperty: 'result',
             successProperty: 'success',
             totalProperty: 'total'
@@ -55,16 +39,24 @@ Ext.define('lsk.view.structur.Structur', {
         },
         root: {
           id: 0,
-          text: 'structur',
-          expanded: true
+          name: 'structur',
+          expanded: true,
+          nodeType: 'async'
         }
       },
       rootVisible: false,
       split: true,
       autoScroll: true,
+      scrollable: true,
+      //maxHeight: screen.height*.65,
       border: true,
       flex: .7,
       region: 'west',
+      listeners: {
+        afterrender: function(treepanel, tool, event) {
+          treepanel.expandAll();
+        }
+      },
       dockedItems: {
         xtype: 'panel',
         layout: { type: 'hbox', align: 'stretch' },
@@ -81,6 +73,15 @@ Ext.define('lsk.view.structur.Structur', {
             labelWidth: 30,
             width: 190,
             emptyText: 'Введите код работы',
+            enableKeyEvents: true,
+            listeners: {
+              change: {
+                  fn: function(el, txt) {
+                  var tree = el.up('treepanel');
+                  tree.filter(txt);
+                }, buffer: 250
+              }
+            }
           },
           {
             xtype: 'panel',
@@ -90,17 +91,34 @@ Ext.define('lsk.view.structur.Structur', {
               {
                 xtype: 'button',
                 text: 'Развернуть все',
-                region: 'east'
+                region: 'east',
+                handler: function(el) {
+                  var treepanel = Ext.ComponentQuery.query('#treepanel')[0];
+                  treepanel.expandAll();
+                }
               },{ padding: 3 },
               {
                 xtype: 'button',
                 text: 'Свернуть все',
-                region: 'east'
+                region: 'east',
+                handler: function(el) {
+                  var treepanel = Ext.ComponentQuery.query('#treepanel')[0];
+                  treepanel.collapseAll();
+                }
               }
             ]
           }
         ]
-      }
+      },
+      columns: [
+        {
+          xtype: 'treecolumn',
+          dataIndex: 'name',
+          align: 'left',
+          flex: 1,
+          sortable: true
+        }
+      ]
     }
   ]
 });

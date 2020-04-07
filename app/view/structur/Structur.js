@@ -3,7 +3,7 @@ Ext.define('lsk.view.structur.Structur', {
   alias: 'widget.structur',
   requires: [
     'lsk.view.structur.StructurController',
-    'lsk.view.structur.plugins.StructuJSONReader',
+    'lsk.view.structur.plugins.StructurJSONReader',
     'lsk.view.structur.plugins.TreeFilter'
   ],
   controller: 'structur',
@@ -30,7 +30,7 @@ Ext.define('lsk.view.structur.Structur', {
           },
           api: { read: 'app/view/structur/structur.json' },
           reader: {
-            type: 'StructuJSONReader',
+            type: 'StructurJSONReader',
             //type: 'json',
             rootProperty: 'result',
             successProperty: 'success',
@@ -50,7 +50,7 @@ Ext.define('lsk.view.structur.Structur', {
       scrollable: true,
       //maxHeight: screen.height*.65,
       border: true,
-      flex: .7,
+      flex: .4,
       region: 'west',
       listeners: {
         afterrender: function(treepanel, tool, event) {
@@ -67,6 +67,7 @@ Ext.define('lsk.view.structur.Structur', {
         items: [
           {
             xtype: 'textfield',
+            itemId: 'searching',
             inputType: 'search',
             fieldLabel: 'Код',
             labelPad: 0,
@@ -113,12 +114,22 @@ Ext.define('lsk.view.structur.Structur', {
       columns: [
         {
           xtype: 'treecolumn',
+          itemId: 'treecolumn',
           dataIndex: 'name',
           align: 'left',
           flex: 1,
           sortable: true
         }
-      ]
+      ], layout: 'fit',
+    },
+    {
+      region: 'center',
+      xtype: 'panel',
+      border: true,
+      collapsible: false,
+      split: { size: 5 },
+      heigth: '100%',
+      layout: 'fit'
     }
   ]
 });

@@ -1,0 +1,47 @@
+.x-column-header-inner {
+  padding: 6px 10px 6px;
+}
+
+.vertical .x-column-header-text {
+  overflow: visible;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.vertical span {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+}
+
+.x-column-header {
+  background: #e3edf9 !important;
+  /* border: 1px solid #b9d6ef; */
+}
+/*
+.x-column-header-inner {
+  border-bottom: 1px solid #d2d4d5;
+} */
+
+.gridcolumnfilter {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  margin-bottom: 35px !important;
+  padding: 3px;
+}
+
+
+
+/* .vertical-txt {
+  transform: rotate(-90deg) translate(15px, 0px);
+  transform-origin: center;
+  text-overflow: clip;
+  text-align: left;
+  overflow: visible !important;
+} */

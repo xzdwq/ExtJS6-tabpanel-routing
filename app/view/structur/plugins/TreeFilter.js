@@ -8,13 +8,13 @@ Ext.define('lsk.view.structur.plugins.TreeFilter', {
   },
   filter: function(value, property, re) {
     var me = this,
-    tree = me.tree,
-    matches = [],
-    root = tree.getRootNode(),
-    property = property || 'name',
-    re = re || new RegExp(value, "ig"),
-    visibleNodes = [],
-    viewNode;
+        tree = me.tree,
+        matches = [],
+        root = tree.getRootNode(),
+        property = property || 'name',
+        re = re || new RegExp(value, "ig"),
+        visibleNodes = [],
+        viewNode;
     tree.expandAll();
     root.cascadeBy(function (node) {
       if(re.test(node.get(property))) {

@@ -1,6 +1,6 @@
-Ext.define('lsk.view.structur.plugins.StructuJSONReader', {
+Ext.define('lsk.view.structur.plugins.StructurJSONReader', {
   extend: 'Ext.data.reader.Json',
-  alias : 'reader.StructuJSONReader',
+  alias : 'reader.StructurJSONReader',
   buildExtractors : function() {
     var me = this;
     me.callParent(arguments);

@@ -7,12 +7,14 @@
   position: absolute;
   left: 0;
   right: 0;
+  bottom: 0;
 }
 
 .vertical span {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 30px;
   -webkit-transform: rotate(-90deg);
   -moz-transform: rotate(-90deg);
   -o-transform: rotate(-90deg);
@@ -21,12 +23,7 @@
 
 .x-column-header {
   background: #e3edf9 !important;
-  /* border: 1px solid #b9d6ef; */
 }
-/*
-.x-column-header-inner {
-  border-bottom: 1px solid #d2d4d5;
-} */
 
 .gridcolumnfilter {
   position: absolute;
@@ -36,7 +33,13 @@
   padding: 3px;
 }
 
+.x-form-text-default {
+  padding: 0px 10px 4px;
+}
 
+.x-placeholder-label-default {
+  padding: 8px 10px 4px;
+}
 
 /* .vertical-txt {
   transform: rotate(-90deg) translate(15px, 0px);

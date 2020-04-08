@@ -32,7 +32,8 @@ Ext.define('lsk.view.schedule.Schedule', {
   alias: 'widget.schedule',
   requires: [
     //'lsk.view.structur.StructurController',
-    'lsk.view.schedule.plugins.GridColumnFilter'
+    'lsk.view.schedule.plugins.GridColumnFilter',
+    'lsk.view.schedule.SheduleStore',
   ],
   //controller: 'structur',
   bodyPadding: 2,
@@ -314,25 +315,16 @@ Ext.define('lsk.view.schedule.Schedule', {
       region: 'center',
       xtype: 'grid',
       layout: 'fit',
-      //store: store,
+      store: { type: 'shedulestore' },
       columnLines: true,
       border: true,
       columns: [
-        {
-          text: '№<br>п/п',
-          width: 60,
-          align: 'center',
-          //dataIndex: 'company',
-          sortable : false,
-          menuDisabled: true,
-          draggable: false,
-          locked: true
-        },
+        { xtype: 'rownumberer', text: '№<br>п/п', width: 60, align: 'center' },
         {
           text: 'Наименование',
           width: 300,
           align: 'center',
-          //dataIndex: 'company',
+          dataIndex: 'name',
           sortable : true,
           draggable: false,
           locked: true,
@@ -342,7 +334,7 @@ Ext.define('lsk.view.schedule.Schedule', {
           text: 'Код',
           width: 150,
           align: 'center',
-          //dataIndex: 'company',
+          dataIndex: 'code',
           sortable : true,
           draggable: false,
           locked: true,
@@ -364,12 +356,16 @@ Ext.define('lsk.view.schedule.Schedule', {
           menuDisabled: true,
           columns: [
             {
+              xtype: 'datecolumn',
               text: 'Старт',
               width: 75,
-              // dataIndex: 'price'
+              dataIndex: 'early_start_date',
+              format: 'd.m.Y',
               sortable : true,
               draggable: false,
-              //renderer : 'usMoney'
+              // renderer : function(val, el) {
+              //   return Ext.util.Format.dateRenderer('d.m.Y');
+              // }
             },
             {
               text: 'Финиш',
